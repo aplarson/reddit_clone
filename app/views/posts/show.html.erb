@@ -6,9 +6,13 @@
   <h1><%= @post.title %></h1>
 <% end %>
 
+<% @post.subs.each do |sub| %>
+  <%= link_to sub.title, sub_url(sub) %>
+<% end %>
 
 <p><%= @post.content %></p>
 
 <% if current_user && @post.author_id == current_user.id%>
+  <%= link_to "Edit post", post_url(@post), method: :patch %>
   <%= link_to "Delete Unfit Post", post_url(@post), :method  => :delete %>
 <% end %>

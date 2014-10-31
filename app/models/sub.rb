@@ -11,7 +11,7 @@
 #
 
 class Sub < ActiveRecord::Base
-  validates :title, :moderator_id, presence: true
+  validates :title, :moderator, presence: true
   validates :title, uniqueness: true
   
   belongs_to(
@@ -22,9 +22,17 @@ class Sub < ActiveRecord::Base
   )
   
   has_many(
-    :posts,
-    class_name: "Post",
+    :post_subs,
+    class_name: "PostSub",
     foreign_key: :sub_id,
     primary_key: :id
   )
+  
+  has_many(
+    :posts,
+    through: :post_subs,
+    source: :post
+  )
+  
+  
 end

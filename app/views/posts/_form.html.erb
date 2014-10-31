@@ -25,14 +25,18 @@
     <%= @post.content%>
   </textarea>
   
-  <% Sub.all.each do |sub| %>
-    <label for="<%= sub.id %>"><%= sub.title %></label>
-    <input type="checkbox" 
-           name="post[sub_id]" 
-           id="<%= sub.id %>"
-           value="<%= sub.id %>"
-      <%= "checked" if @post.sub_id == sub.id %>>
-  <% end %>
+  <ul>
+    <% Sub.all.each do |sub| %>
+      <li>
+        <label for="<%= sub %>"><%= sub.title %></label>
+        <input type="checkbox" 
+               name="post[sub_ids][]" 
+               id="<%= sub.id %>"
+               value="<%= sub.id %>"
+          <%= "checked" if @post.sub_ids.include?(sub.id) %>>
+      </li>
+    <% end %>
+  </ul>
   
   <input type="submit" value="<%= button_text %>">
 </form>

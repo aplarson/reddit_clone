@@ -1,0 +1,9 @@
+<h1>b_r/<%= @sub.title %></h1>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li>
+      <%= link_to post.name, post_url(post) %>
+    </li>
+  <% end %>
+</ul>

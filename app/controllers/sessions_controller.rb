@@ -10,13 +10,14 @@ class SessionsController < ApplicationController
       log_in! @user 
       redirect_to user_url(@user)
     else
-      flash[:errors] = "I'm sorry but it appears you don't exist"
+      flash.now[:errors] = "I'm sorry but it appears you don't exist"
+      @user = User.new(username: user_params[:username])
       render :new
     end
   end
   
   def destroy
-    log_out! current_user
+    log_out!
     redirect_to new_session_url
   end
 end

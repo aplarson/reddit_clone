@@ -48,6 +48,9 @@ class SubsController < ApplicationController
     end
     
     def check_sub_ownership
-      Sub.find(params[:id]).moderator_id == current_user.id
+      redirect_to session_url unless current_user
+      unless Sub.find(params[:id]).moderator_id == current_user.id
+        redirect_to sub_url(params[:id])
+      end
     end
 end

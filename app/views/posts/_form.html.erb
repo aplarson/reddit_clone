@@ -1,0 +1,38 @@
+<% if @post.persisted? %>
+  <% action = post_url(@post) %>
+  <% button_text =  "Update #{@post.title}" %>
+<% else %>
+  <% action = posts_url %>
+  <% button_text =  "Create post!" %>
+<% end %>
+
+<form action="<%= action %>" method="POST">
+  <% if @post.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  
+  <label for="title">Title</label>
+  <input type="text" name="post[title]" value="<%= @post.title %>">
+  
+  <label for="post_url">URL</label>
+  <input type="text" name="post[url]" value="<%= @post.url %>">
+  
+  <label for="post_content">Content</label>
+  <textarea name="post[content]">
+    <%= @post.content%>
+  </textarea>
+  
+  <% Sub.all.each do |sub| %>
+    <label for="<%= sub.id %>"><%= sub.title %></label>
+    <input type="checkbox" 
+           name="post[sub_id]" 
+           id="<%= sub.id %>"
+           value="<%= sub.id %>"
+      <%= "checked" if @post.sub_id == sub.id %>>
+  <% end %>
+  
+  <input type="submit" value="<%= button_text %>">
+</form>

@@ -5,11 +5,9 @@
 <%= link_to "Add a Comment!", new_comment_comment_url(comment) %>
 
 <ul>
-<% @all_comments.each do |child| %>
-  <% if child.parent_comment_id == comment.id %>
-    <li>
-      <%= render 'comments/comment', comment: child %>
-    </li>
-  <% end %>
+<% @all_comments[comment.id].each do |child| %>
+  <li>
+    <%= render 'comments/comment', comment: child %>
+  </li>
 <% end %>
 </ul>

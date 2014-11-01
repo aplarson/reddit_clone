@@ -20,8 +20,7 @@
 <%= link_to "Add a comment!", new_post_comment_url(@post) %>
 
 <ul>
-  <% @all_comments.each do |comment| %> 
-    <% next unless comment.parent_comment_id.nil? %>
+  <% @all_comments[nil].each do |comment| %> 
     <li>
       <%= render "comments/comment", comment: comment %>
     </li>

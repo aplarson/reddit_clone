@@ -25,7 +25,8 @@ class Sub < ActiveRecord::Base
     :post_subs,
     class_name: "PostSub",
     foreign_key: :sub_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   )
   
   has_many(

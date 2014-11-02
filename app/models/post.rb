@@ -26,7 +26,8 @@ class Post < ActiveRecord::Base
     class_name: "PostSub",
     foreign_key: :post_id,
     primary_key: :id,
-    dependent: :destroy
+    dependent: :destroy,
+    inverse_of: :post
   )
   
   has_many(

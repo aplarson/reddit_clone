@@ -34,6 +34,4 @@ class Sub < ActiveRecord::Base
     through: :post_subs,
     source: :post
   )
-  
-  
 end

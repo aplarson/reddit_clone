@@ -10,14 +10,15 @@
 #
 
 class PostSub < ActiveRecord::Base
-  validates :post_id, :sub_id, presence: true
+  validates :post, :sub, presence: true
   validates_uniqueness_of :sub_id, scope: :post_id
   
   belongs_to(
     :post,
     class_name: "Post",
     foreign_key: :post_id,
-    primary_key: :id
+    primary_key: :id,
+    inverse_of: :post_subs
   )
   
   belongs_to(

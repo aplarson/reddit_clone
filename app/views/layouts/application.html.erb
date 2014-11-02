@@ -8,13 +8,22 @@
 </head>
 <body>
 <%= flash[:errors]%>
-<%= yield %>
 
 <%if current_user%>
   
   <%= link_to "Log out!", session_url, {:method  => :delete} %>
 
+<% else %>
+ 
+  <%= link_to "Log in", new_session_url %>
+
 <%end%>
+
+<div>
+  <%= link_to 'All Subs', subs_url %>
+</div>
+
+<%= yield %>
 
 </body>
 </html>
